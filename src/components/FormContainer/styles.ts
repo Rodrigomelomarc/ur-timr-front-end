@@ -1,16 +1,5 @@
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 import { shade, lighten } from 'polished';
-
-const fromTop = keyframes`
-  from {
-    opacity: 0;
-    transform: translateY(-50%);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-`;
 
 export const Container = styled.div`
   max-width: 517px;
@@ -20,7 +9,6 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  animation: ${fromTop} 0.5s linear;
 
   @media screen and (max-width: 768px) {
     max-width: 400px;

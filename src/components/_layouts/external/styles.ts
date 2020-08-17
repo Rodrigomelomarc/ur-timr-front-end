@@ -1,4 +1,13 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
+
+const appear = keyframes`
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+`;
 
 export const Wrapper = styled.main`
   height: 100%;
@@ -7,4 +16,8 @@ export const Wrapper = styled.main`
   display: flex;
   align-items: center;
   justify-content: center;
+
+  div {
+    animation: ${appear} 0.6s linear;
+  }
 `;

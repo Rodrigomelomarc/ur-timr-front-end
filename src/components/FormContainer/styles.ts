@@ -1,33 +1,44 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { shade, lighten } from 'polished';
 
+const fromTop = keyframes`
+  from {
+    opacity: 0;
+    transform: translateY(-50%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+`;
+
 export const Container = styled.div`
-  min-width: 51.7rem;
-  padding: 1rem 4rem;
+  max-width: 517px;
+  padding: 10px 20px;
   background-color: #e4e4e4;
-  border-radius: 1rem;
+  border-radius: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  animation: ${fromTop} 0.5s linear;
 
-  @media screen and (max-width: 600px) {
-    min-width: 4rem;
-    padding: 1rem 3rem;
+  @media screen and (max-width: 768px) {
+    max-width: 400px;
   }
 
   @media screen and (max-width: 425px) {
-    min-width: 3rem;
-    padding: 1rem 2rem;
+    max-width: 330px;
+    padding: 10px 15px;
   }
 
   h1 {
     color: #403d3d;
-    font-size: 2.3rem;
-    margin: 1.4rem 0 4rem 0;
+    font-size: 23px;
+    margin: 14px 0 40px 0;
   }
 
   button {
-    margin-top: 2rem;
+    margin-top: 20px;
   }
 
   form {
@@ -38,8 +49,8 @@ export const Container = styled.div`
     a {
       font-weight: 500;
       color: #403d3d;
-      font-size: 1.6rem;
-      margin-top: 3.5rem;
+      font-size: 16px;
+      margin-top: 35px;
       transition: color 0.2s;
 
       &:hover {
@@ -51,21 +62,19 @@ export const Container = styled.div`
   > a {
     font-weight: 500;
     color: #7e9be5;
-    font-size: 1.6rem;
-    margin-top: 4.2rem;
+    font-size: 16px;
+    margin-top: 42px;
     transition: color 0.2s;
+
+    svg {
+      margin-right: 5px;
+    }
 
     display: flex;
     align-items: center;
 
     &:hover {
       color: ${shade(0.2, '#7e9be5')};
-    }
-
-    svg {
-      width: 2rem;
-      height: 2rem;
-      margin-right: 1rem;
     }
   }
 `;

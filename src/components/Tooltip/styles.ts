@@ -5,17 +5,17 @@ export const Container = styled.div`
 
   span {
     position: absolute;
-    min-width: 18rem;
-    padding: 1.2rem;
+    min-width: 180px;
+    padding: 12px;
     background: #7e9be5;
-    font-size: 1.4rem;
-    border-radius: 1rem;
+    font-size: 14px;
+    border-radius: 10px;
     font-weight: 500;
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.2s;
 
-    bottom: calc(100% + 1.2rem);
+    bottom: calc(100% + 12px);
     left: 50%;
     transform: translateX(-50%);
 
@@ -26,34 +26,21 @@ export const Container = styled.div`
       content: '';
       border-style: solid;
       border-color: #7e9be5 transparent;
-      border-width: 0.8rem 0.8rem 0 0.8rem;
+      border-width: 8px 8px 0 8px;
 
       position: absolute;
       top: 100%;
       left: 50%;
       transform: translateX(-50%);
-
-      @media screen and (max-width: 320px) {
-        left: 67%;
-      }
     }
 
-    @media screen and (max-width: 600px) {
-      min-width: 15rem;
-    }
-
-    @media screen and (max-width: 320px) {
-      left: 70%;
-      transform: translateX(-70%);
+    @media screen and (max-width: 768px) {
+      min-width: 150px;
     }
   }
 
   &:hover span {
     opacity: 1;
     visibility: visible;
-  }
-
-  @media screen and (max-width: 320px) {
-    left: -30%;
   }
 `;

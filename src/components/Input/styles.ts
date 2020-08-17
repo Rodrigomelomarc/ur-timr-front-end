@@ -8,17 +8,31 @@ interface ContainerProps {
 }
 
 export const Container = styled.div<ContainerProps>`
-  width: 43.8rem;
-  height: 5.7rem;
-  padding: 2.0rem 3.2rem;
+  width: 478px;
+  padding: 15.5px 29px;
   background-color: #d2d1d1;
-  border-radius: 5.0rem;
+  border-radius: 50px;
   color: #9a9191;
 
   display: flex;
   align-items: center;
 
-  border: 0.2rem solid transparent;
+  border: 2px solid transparent;
+
+  @media screen and (max-width: 768px) {
+    width: 378px;
+    font-size: 10px;
+  }
+
+  @media screen and (max-width: 425px) {
+    width: 300px;
+    padding: 12.5px 26px;
+  }
+
+  @media screen and (max-width: 320px) {
+    width: 250px;
+    padding: 10.5px 24px;
+  }
 
   ${(props) =>
     props.isErrored &&
@@ -40,11 +54,11 @@ export const Container = styled.div<ContainerProps>`
     `}
 
   & + div {
-    margin-top: 1.4rem;
+    margin-top: 14px;
   }
 
   svg {
-    margin-right: 1.6rem;
+    margin-right: 16px;
   }
 
   input {
@@ -52,29 +66,27 @@ export const Container = styled.div<ContainerProps>`
     color: #403d3d;
     background-color: transparent;
 
+    @media screen and (max-width: 768px) {
+      max-width: 77%;
+    }
+
+    @media screen and (max-width: 425px) {
+      max-width: 70%;
+    }
+
+    @media screen and (max-width: 320px) {
+      max-width: 62%;
+    }
+
     &::placeholder {
       color: #9a9191;
     }
   }
-
-  @media screen and (max-width: 600px) {
-    width: 37.8rem;
-  }
-
-  @media screen and (max-width: 425px) {
-    width: 30.0rem;
-    height: 5.0rem;
-  }
-
-  @media screen and (max-width: 320px) {
-    width: 25.0rem;
-    height: 4.0rem;
-  }
 `;
 
 export const Error = styled(Tooltip)`
-  height: 2rem;
-  margin-left: 2rem;
+  height: 20px;
+  margin-left: 16px;
 
   svg {
     margin: 0;

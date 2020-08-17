@@ -1,11 +1,10 @@
 import React, { useRef, useCallback } from 'react';
 import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
-import { FiMail, FiLogIn, FiKey } from 'react-icons/fi';
+import { FiKey } from 'react-icons/fi';
 import * as Yup from 'yup';
-import { useDispatch, useSelector } from 'react-redux';
 
-import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import logo from '../../assets/logo.svg';
 
 import ExternalLayout from '../../components/_layouts/external/index';
@@ -13,77 +12,82 @@ import FormContainer from '../../components/FormContainer/index';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
 import getValidationErrors from '../../utils/getValidationErrors';
-import { thunkSignInRequest } from '../../store/modules/auth/thunks';
-import { RootState } from '../../store/modules/rootReducer';
+import api from '../../services/api';
+import history from '../../services/history';
+import useQuery from '../../hooks/useQuery';
 
-interface SignInFormData {
-  email: string;
+interface ResetPasswordFormData {
   password: string;
+  password_confirmation: string;
 }
 
-const SignIn: React.FC = () => {
+const ResetPassword: React.FC = () => {
+  const query = useQuery();
   const formRef = useRef<FormHandles>(null);
-  const loading: boolean = useSelector(
-    (state: RootState) => state.auth.loading,
-  );
-  const dispatch = useDispatch();
 
   const handleSubmit = useCallback(
-    async (data: SignInFormData) => {
+    async (data: ResetPasswordFormData) => {
       try {
         formRef.current?.setErrors({});
 
         const schema = Yup.object().shape({
-          email: Yup.string()
-            .email('Digite um email válido')
-            .required('E-mail obrigatório'),
-          password: Yup.string().required('Senha obrigatória'),
+          password: Yup.string().required('Informe uma nova senha'),
+          password_confirmation: Yup.string()
+            .required('Confirme sua senha')
+            .oneOf([Yup.ref('password')], 'As senhas devem ser iguais'),
         });
 
         await schema.validate(data, {
           abortEarly: false,
         });
 
-        const { email, password } = data;
+        const { password, password_confirmation } = data;
+        const token = query.get('token');
 
-        dispatch(thunkSignInRequest({ email, password }));
+        await api.post('/password/reset', {
+          token,
+          password,
+          password_confirmation,
+        });
+
+        history.push('/');
+
+        toast.success('Senha resetada com sucesso!');
       } catch (error) {
         if (error instanceof Yup.ValidationError) {
           const errors = getValidationErrors(error);
           formRef.current?.setErrors(errors);
+        } else {
+          toast.error(error.response.data.message);
         }
       }
     },
-    [dispatch],
+    [query],
   );
 
   return (
     <ExternalLayout>
       <FormContainer>
         <img src={logo} alt="UrTimr Logo" />
-        <h1>Faça seu login</h1>
+        <h1>Resetar senha</h1>
         <Form ref={formRef} onSubmit={handleSubmit}>
-          <Input name="email" icon={FiMail} placeholder="E-mail" />
           <Input
-            name="password"
             type="password"
+            name="password"
             icon={FiKey}
-            placeholder="Senha"
+            placeholder="Nova senha"
           />
-
-          <Button type="submit" loading={loading}>
-            Entrar
-          </Button>
-          <Link to="/forgot_password">Esqueci minha senha</Link>
+          <Input
+            type="password"
+            name="password_confirmation"
+            icon={FiKey}
+            placeholder="Nova senha"
+          />
+          <Button type="submit">Resetar</Button>
         </Form>
-
-        <Link to="/signup">
-          <FiLogIn />
-          Criar conta
-        </Link>
       </FormContainer>
     </ExternalLayout>
   );
 };
 
-export default SignIn;
+export default ResetPassword;

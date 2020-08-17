@@ -14,10 +14,6 @@ export default createGlobalStyle`
     outline: 0;
   }
 
-  html {
-    font-size: 62.5%;
-  }
-
   body, html, #root {
     height: 100%;
   }
@@ -28,7 +24,7 @@ export default createGlobalStyle`
 
   body, button, input {
     font-family: Poppins, sans-serif;
-    font-size: 1.6rem;
+    font-size: 16px;
   }
 
   h1, h2, h3, h4, h5, h6, strong {

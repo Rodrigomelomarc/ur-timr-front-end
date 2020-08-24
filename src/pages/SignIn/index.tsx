@@ -8,7 +8,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import logo from '../../assets/logo.svg';
 
-import ExternalLayout from '../../components/_layouts/external/index';
 import FormContainer from '../../components/FormContainer/index';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
@@ -58,31 +57,29 @@ const SignIn: React.FC = () => {
   );
 
   return (
-    <ExternalLayout>
-      <FormContainer>
-        <img src={logo} alt="UrTimr Logo" />
-        <h1>Faça seu login</h1>
-        <Form ref={formRef} onSubmit={handleSubmit}>
-          <Input name="email" icon={FiMail} placeholder="E-mail" />
-          <Input
-            name="password"
-            type="password"
-            icon={FiKey}
-            placeholder="Senha"
-          />
+    <FormContainer>
+      <img src={logo} alt="UrTimr Logo" />
+      <h1>Faça seu login</h1>
+      <Form ref={formRef} onSubmit={handleSubmit}>
+        <Input name="email" icon={FiMail} placeholder="E-mail" />
+        <Input
+          name="password"
+          type="password"
+          icon={FiKey}
+          placeholder="Senha"
+        />
 
-          <Button type="submit" loading={loading}>
-            Entrar
-          </Button>
-          <Link to="/forgot_password">Esqueci minha senha</Link>
-        </Form>
+        <Button type="submit" loading={loading}>
+          Entrar
+        </Button>
+        <Link to="/forgot_password">Esqueci minha senha</Link>
+      </Form>
 
-        <Link to="/signup">
-          <FiLogIn />
-          Criar conta
-        </Link>
-      </FormContainer>
-    </ExternalLayout>
+      <Link to="/signup">
+        <FiLogIn />
+        Criar conta
+      </Link>
+    </FormContainer>
   );
 };
 

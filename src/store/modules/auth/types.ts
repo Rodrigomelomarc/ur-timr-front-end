@@ -15,6 +15,7 @@ export interface SignInSuccessPayload {
 export const SIGN_IN_REQUEST = '@auth/SIGN_IN_REQUEST';
 export const SIGN_IN_SUCCESS = '@auth/SIGN_IN_SUCCESS';
 export const SIGN_IN_ERROR = '@auth/SIGN_IN_ERROR';
+export const SIGN_OUT = '@auth/SIGN_OUT';
 
 interface signInRequest extends Action {
   type: typeof SIGN_IN_REQUEST;
@@ -29,4 +30,12 @@ interface signInError extends Action {
   type: typeof SIGN_IN_ERROR;
 }
 
-export type AuthActionTypes = signInRequest | signInSuccess | signInError;
+interface signOut extends Action {
+  type: typeof SIGN_OUT;
+}
+
+export type AuthActionTypes =
+  | signInRequest
+  | signInSuccess
+  | signInError
+  | signOut;

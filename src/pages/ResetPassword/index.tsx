@@ -7,7 +7,6 @@ import * as Yup from 'yup';
 import { toast } from 'react-toastify';
 import logo from '../../assets/logo.svg';
 
-import ExternalLayout from '../../components/_layouts/external/index';
 import FormContainer from '../../components/FormContainer/index';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
@@ -66,27 +65,25 @@ const ResetPassword: React.FC = () => {
   );
 
   return (
-    <ExternalLayout>
-      <FormContainer>
-        <img src={logo} alt="UrTimr Logo" />
-        <h1>Resetar senha</h1>
-        <Form ref={formRef} onSubmit={handleSubmit}>
-          <Input
-            type="password"
-            name="password"
-            icon={FiKey}
-            placeholder="Nova senha"
-          />
-          <Input
-            type="password"
-            name="password_confirmation"
-            icon={FiKey}
-            placeholder="Nova senha"
-          />
-          <Button type="submit">Resetar</Button>
-        </Form>
-      </FormContainer>
-    </ExternalLayout>
+    <FormContainer>
+      <img src={logo} alt="UrTimr Logo" />
+      <h1>Resetar senha</h1>
+      <Form ref={formRef} onSubmit={handleSubmit}>
+        <Input
+          type="password"
+          name="password"
+          icon={FiKey}
+          placeholder="Nova senha"
+        />
+        <Input
+          type="password"
+          name="password_confirmation"
+          icon={FiKey}
+          placeholder="Nova senha"
+        />
+        <Button type="submit">Resetar</Button>
+      </Form>
+    </FormContainer>
   );
 };
 

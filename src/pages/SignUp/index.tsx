@@ -8,7 +8,6 @@ import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import logo from '../../assets/logo.svg';
 
-import ExternalLayout from '../../components/_layouts/external/index';
 import FormContainer from '../../components/FormContainer/index';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
@@ -61,35 +60,33 @@ const SignUp: React.FC = () => {
   }, []);
 
   return (
-    <ExternalLayout>
-      <FormContainer>
-        <img src={logo} alt="UrTimr Logo" />
-        <h1>Cadastre-se</h1>
-        <Form ref={formRef} onSubmit={handleSubmit}>
-          <Input name="name" icon={FiUser} placeholder="Nome" />
-          <Input name="email" icon={FiMail} placeholder="E-mail" />
-          <Input
-            name="password"
-            type="password"
-            icon={FiKey}
-            placeholder="Senha"
-          />
-          <Input
-            name="password_confirmation"
-            type="password"
-            icon={FiKey}
-            placeholder="Confirmar senha"
-          />
+    <FormContainer>
+      <img src={logo} alt="UrTimr Logo" />
+      <h1>Cadastre-se</h1>
+      <Form ref={formRef} onSubmit={handleSubmit}>
+        <Input name="name" icon={FiUser} placeholder="Nome" />
+        <Input name="email" icon={FiMail} placeholder="E-mail" />
+        <Input
+          name="password"
+          type="password"
+          icon={FiKey}
+          placeholder="Senha"
+        />
+        <Input
+          name="password_confirmation"
+          type="password"
+          icon={FiKey}
+          placeholder="Confirmar senha"
+        />
 
-          <Button type="submit">Cadastrar</Button>
-        </Form>
+        <Button type="submit">Cadastrar</Button>
+      </Form>
 
-        <Link to="/">
-          <FiArrowLeft />
-          Voltar para o login
-        </Link>
-      </FormContainer>
-    </ExternalLayout>
+      <Link to="/">
+        <FiArrowLeft />
+        Voltar para o login
+      </Link>
+    </FormContainer>
   );
 };
 

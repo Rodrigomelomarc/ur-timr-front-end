@@ -1,6 +1,6 @@
 import { toast } from 'react-toastify';
 
-import { AppThunk } from '../../index';
+import { AppThunk } from '../..';
 import { signInRequest, signInSuccess, signInError } from './actions';
 import api from '../../../services/api';
 import history from '../../../services/history';

@@ -3,16 +3,15 @@ import { store } from '../store';
 
 const api = axios.create({
   baseURL: 'http://localhost:3333',
-});
+  headers: {
+    Authorization: {
+      toString() {
+        const { token } = store.getState().auth;
 
-api.interceptors.request.use((config) => {
-  const { token } = store.getState().auth;
-
-  if (token) {
-    axios.defaults.headers.Authorization = `Bearer ${token}`;
-  }
-
-  return config;
+        return token ? `Bearer ${token}` : null;
+      },
+    },
+  },
 });
 
 export default api;

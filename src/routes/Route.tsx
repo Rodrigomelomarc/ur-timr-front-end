@@ -9,26 +9,30 @@ import { store } from '../store';
 interface RouteProps extends ReactDOMRouteProps {
   isPrivate?: boolean;
   component: ComponentType<ReactDOMRouteProps>;
+  layout: ComponentType<ReactDOMRouteProps>;
 }
 
 const Route: React.FC<RouteProps> = ({
   isPrivate = false,
   component: Component,
+  layout: Layout,
   ...rest
 }) => {
   const { signed } = store.getState().auth;
 
   return (
-    <ReactDOMRoute
-      {...rest}
-      render={() => {
-        return isPrivate === signed ? (
-          <Component />
-        ) : (
-          <Redirect to={{ pathname: isPrivate ? '/' : '/dashboard' }} />
-        );
-      }}
-    />
+    <Layout>
+      <ReactDOMRoute
+        {...rest}
+        render={() => {
+          return isPrivate === signed ? (
+            <Component />
+          ) : (
+            <Redirect to={{ pathname: isPrivate ? '/' : '/dashboard' }} />
+          );
+        }}
+      />
+    </Layout>
   );
 };
 

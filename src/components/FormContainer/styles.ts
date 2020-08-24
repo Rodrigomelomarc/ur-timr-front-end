@@ -1,5 +1,14 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { shade, lighten } from 'polished';
+
+const appear = keyframes`
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+`;
 
 export const Container = styled.div`
   max-width: 517px;
@@ -9,6 +18,8 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.25);
+  animation: ${appear} 0.6s linear;
 
   @media screen and (max-width: 768px) {
     max-width: 400px;

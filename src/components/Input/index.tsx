@@ -9,14 +9,21 @@ import { IconBaseProps } from 'react-icons';
 import { useField } from '@unform/core';
 import { FiAlertCircle } from 'react-icons/fi';
 
+import { CSSProperties } from 'styled-components';
 import { Container, Error } from './styles';
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   name: string;
   icon?: React.ComponentType<IconBaseProps>;
+  containerStyle?: CSSProperties;
 }
 
-const Input: React.FC<InputProps> = ({ name, icon: Icon, ...rest }) => {
+const Input: React.FC<InputProps> = ({
+  name,
+  icon: Icon,
+  containerStyle,
+  ...rest
+}) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const { fieldName, defaultValue, error, registerField } = useField(name);
   const [isSelected, setIsSelected] = useState(false);
@@ -41,7 +48,12 @@ const Input: React.FC<InputProps> = ({ name, icon: Icon, ...rest }) => {
   }, [fieldName, registerField]);
 
   return (
-    <Container isFilled={isFilled} isSelected={isSelected} isErrored={!!error}>
+    <Container
+      style={containerStyle}
+      isFilled={isFilled}
+      isSelected={isSelected}
+      isErrored={!!error}
+    >
       {Icon && <Icon size={20} />}
       <input
         onFocus={handleInputSelected}

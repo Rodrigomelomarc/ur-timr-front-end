@@ -1,4 +1,5 @@
 import { produce } from 'immer';
+import { SIGN_OUT } from './types';
 
 import {
   AuthActionTypes,
@@ -39,6 +40,11 @@ export function authReducer(
       case SIGN_IN_ERROR:
         draft.loading = false;
         break;
+      case SIGN_OUT: {
+        draft.signed = false;
+        draft.token = '';
+        break;
+      }
       default:
         break;
     }

@@ -43,6 +43,7 @@
       "jsx-a11y/anchor-is-valid": "off",
       "no-param-reassign": "off",
       "camelcase": "off",
+      "no-shadow":"off",
       "@typescript-eslint/explicit-function-return-type": [
         "error",
         {

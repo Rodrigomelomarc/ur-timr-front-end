@@ -22,7 +22,7 @@ export default createGlobalStyle`
     -webkit-font-smoothing: antialiased !important;
   }
 
-  body, button, input {
+  body, button, input, textarea {
     font-family: Poppins, sans-serif;
     font-size: 16px;
   }
@@ -42,5 +42,6 @@ export default createGlobalStyle`
 
   button {
     cursor: pointer;
+    background: transparent;
   }
 `;
